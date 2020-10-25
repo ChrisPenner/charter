@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b3fde94b407b9ac933ee3844a6140bac7e765e47f45aa43169391fde3d81f7ce
+-- hash: c4daa91b4c752a1ff369c079cf5f8c59091e1682630f50a4ecfe7cffb11b8425
 
 name:           charter
 version:        0.1.0.0
@@ -20,6 +20,8 @@ build-type:     Simple
 extra-source-files:
     README.md
     ChangeLog.md
+data-files:
+    templates/index.html
 
 source-repository head
   type: git

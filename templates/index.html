@@ -9,12 +9,14 @@
 
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(kickoff);
+            function refresh() {
+                fetch('/data')
+                    .then(resp => resp.json())
+                    .then(chart => initChart(chart));
+            }
             function kickoff() {
-                window.setInterval(function(){
-                    fetch('/data')
-                        .then(resp => resp.json())
-                        .then(chart => initChart(chart));
-                    }, 2000)
+                refresh();
+                window.setInterval(refresh, 10000)
             }
             function initChart(chart){
                 var data = new google.visualization.DataTable();

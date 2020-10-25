@@ -36,6 +36,8 @@ dependencies:
 library:
   source-dirs: src
 
+data-files: 'templates/index.html'
+
 executables:
   charter-exe:
     main:                Main.hs
