@@ -81,17 +81,13 @@ instance ToJSON ChartStyle where
     SteppedAreaChart -> "steppedarea"
     CandlestickChart -> "candlestick"
 
-data ChartOptions = ChartOptions
-    { title :: T.Text
-    }
+data ChartOptions = ChartOptions Value
 
 instance ToJSON ChartOptions where
-  toJSON ChartOptions{..} =
-      A.object [ "title" .= title
-               ]
+  toJSON (ChartOptions v) = v
 
 defaultChartOptions :: ChartOptions
-defaultChartOptions = ChartOptions {title=""}
+defaultChartOptions = ChartOptions (object [])
 
 data Chart =
     Chart { options :: ChartOptions
