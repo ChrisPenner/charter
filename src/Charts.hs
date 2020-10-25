@@ -1,9 +1,10 @@
 module Charts (
         serveChart
-              , Chart(..)
+              , Chart
               , Column(..)
               , ChartOptions(..)
               , ChartStyle(..)
+              , buildChart
     ) where
 
 import Charts.Internal.Server

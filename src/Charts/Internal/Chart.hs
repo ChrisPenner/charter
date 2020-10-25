@@ -10,23 +10,6 @@ module Charts.Internal.Chart where
 import qualified Data.Text as T
 import Data.Aeson as A
 
--- https://developers.google.com/chart/interactive/docs/roles#what-roles-are-available
--- data Role =
---         Annotation
---       | AnnotationText
---       | Certainty
---       | Emphasis
---       | Interval
---       | Scope
---       | Style
---       | Tooltip
---       | Domain
---       | Data
---   deriving (Show, Eq, Ord)
-
-
-data NumberFormatting
-
 data Column =
         NumberColumn T.Text
       | StringColumn T.Text
@@ -101,16 +84,19 @@ instance Semigroup ChartOptions where
 instance Monoid ChartOptions where
   mempty = ChartOptions {title="", style=LineChart}
 
-data Chart (style :: ChartStyle) =
+data Chart =
     Chart { columns :: [Column]
           , dataTable :: [[Value]]
           , options :: ChartOptions
           }
 
-instance ToJSON (Chart a) where
+instance ToJSON Chart where
   toJSON (Chart{..}) =
       object [ "rows" .= dataTable
              , "options" .= options
              , "columns" .= columns
              ]
 
+
+buildChart :: [Column] -> [[Value]] -> ChartOptions -> Chart
+buildChart = Chart

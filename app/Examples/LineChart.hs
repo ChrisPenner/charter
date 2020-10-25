@@ -8,8 +8,8 @@ import qualified Data.Text as T
 chartColumns :: [Column]
 chartColumns = [StringColumn "Year", NumberColumn "Attendance", NumberColumn "Other", AnnotationColumn]
 
-lineChart :: Chart a
-lineChart = Chart chartColumns chartData (ChartOptions{title="My Chart", style=LineChart})
+lineChart :: Chart
+lineChart = buildChart chartColumns chartData (ChartOptions{title="My Chart", style=LineChart})
 
 chartData :: [[Value]]
 chartData = asJSON <$> 

@@ -12,14 +12,14 @@ import Control.Concurrent.Async
 import System.Process
 import Control.Monad
 
-chartApp :: Chart a -> FilePath -> Application
+chartApp :: Chart -> FilePath -> Application
 chartApp chart indexFile req handler 
       | pathInfo req == ["data"] = do
           handler (responseLBS ok200 [("Content-Type", "application/json")] (encode chart))
       | otherwise = do
           handler (responseFile ok200 mempty indexFile Nothing)
 
-serveChart :: Port -> Chart a -> IO ()
+serveChart :: Port -> Chart -> IO ()
 serveChart port chart = do
     indexHtml <- getDataFileName "templates/index.html"
     withAsync (run port (chartApp chart indexHtml)) $ \server -> do
