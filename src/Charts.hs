@@ -1,5 +1,5 @@
-module Charts (
-        serveChart
+module Charts ( serveChart
+              , serveDynamicChart
               , Chart
               , Column(..)
               , ChartOptions(..)

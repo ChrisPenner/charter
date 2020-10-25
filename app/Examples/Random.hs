@@ -6,12 +6,17 @@ import Charts
 import Control.Monad.Random
 import Data.Traversable
 import Data.Aeson
+import Control.Concurrent
 
-randomChart :: Chart
-randomChart = buildChart
-  defaultChartOptions
-  [NumberColumn "Iteration", NumberColumn "Value A", NumberColumn "Value B"]
-  $ flip evalRand (mkStdGen 3) $ for [1..100] $ \i -> do
-                        a <- liftRand (randomR (0, 1))
-                        b <- liftRand (randomR (0, 1))
-                        return [toJSON @Int i, toJSON @Float a, toJSON @Double b]
+randomChart :: IO Chart
+randomChart = do
+    rows <- for [1..100] $ \i -> do
+                a <- randomRIO (0, 1)
+                b <- randomRIO (0, 1)
+                return [toJSON @Int i, toJSON @Float a, toJSON @Double b]
+    return $ buildChart defaultChartOptions [NumberColumn "Iteration", NumberColumn "Value A", NumberColumn "Value B"] rows
+
+buildRandomChart :: (Chart -> IO ()) -> IO ()
+buildRandomChart sendChart = forever $ do
+    randomChart >>= sendChart
+    threadDelay 2000000
