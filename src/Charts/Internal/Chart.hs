@@ -78,16 +78,13 @@ instance ToJSON ChartOptions where
                 , "style" .= style
                ]
 
-instance Semigroup ChartOptions where
-  (<>) = const
-
-instance Monoid ChartOptions where
-  mempty = ChartOptions {title="", style=LineChart}
+defaultChartOptions :: ChartOptions
+defaultChartOptions = ChartOptions {title="", style=LineChart}
 
 data Chart =
-    Chart { columns :: [Column]
+    Chart { options :: ChartOptions
+          , columns :: [Column]
           , dataTable :: [[Value]]
-          , options :: ChartOptions
           }
 
 instance ToJSON Chart where
@@ -97,6 +94,5 @@ instance ToJSON Chart where
              , "columns" .= columns
              ]
 
-
-buildChart :: [Column] -> [[Value]] -> ChartOptions -> Chart
+buildChart :: ChartOptions -> [Column] -> [[Value]] ->  Chart
 buildChart = Chart

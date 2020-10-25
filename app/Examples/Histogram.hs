@@ -6,7 +6,7 @@ import Data.Aeson
 import qualified Data.Text as T
 
 histogram :: Chart
-histogram = buildChart dinoColumns dinoData (ChartOptions{title="My Chart", style=Histogram})
+histogram = buildChart (ChartOptions{title="My Chart", style=Histogram}) dinoColumns dinoData
 
 dinoColumns :: [Column]
 dinoColumns = [StringColumn "Dinosaur", NumberColumn "Length"]

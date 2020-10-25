@@ -32,6 +32,7 @@ dependencies:
 - warp
 - async
 - process
+- one-liner
 
 library:
   source-dirs: src
@@ -52,6 +53,8 @@ executables:
     - -Wall
     dependencies:
     - charter
+    - random
+    - MonadRandom
 
 tests:
   charter-test:

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f426a1732fed203815430fcd055b134e022e861e9bda6136698594e020586fc9
+-- hash: 6fecf42f9806f1c2c7ddf26f4d2050f81af0c4b1f02e99a097f3a049805684cc
 
 name:           charter
 version:        0.1.0.0
@@ -30,6 +30,7 @@ source-repository head
 library
   exposed-modules:
       Charts
+      Charts.Internal.Auto
       Charts.Internal.Chart
       Charts.Internal.Server
   other-modules:
@@ -45,6 +46,7 @@ library
     , containers
     , http-types
     , mtl
+    , one-liner
     , process
     , scientific
     , text
@@ -55,15 +57,18 @@ library
 executable charter-exe
   main-is: Main.hs
   other-modules:
+      Examples.Auto
       Examples.BarChart
       Examples.Histogram
       Examples.LineChart
+      Examples.Random
       Paths_charter
   hs-source-dirs:
       app
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -Wall
   build-depends:
-      aeson
+      MonadRandom
+    , aeson
     , async
     , base >=4.7 && <5
     , bytestring
@@ -71,7 +76,9 @@ executable charter-exe
     , containers
     , http-types
     , mtl
+    , one-liner
     , process
+    , random
     , scientific
     , text
     , wai
@@ -95,6 +102,7 @@ test-suite charter-test
     , containers
     , http-types
     , mtl
+    , one-liner
     , process
     , scientific
     , text
