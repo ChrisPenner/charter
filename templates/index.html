@@ -3,10 +3,29 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </head>
     <body>
-        <div id="chart" style="width: 900px; height: 500px"></div>
+        <style>
+            #error {
+                margin: auto;
+                color: maroon;
+                background-color: #fdd0d0;
+                padding: 1em;
+                font-size: 1.5em;
+            }
+
+            #chart {
+                width: 900px;
+                height: 500px;
+                margin: auto;
+            }
+
+            .hidden {
+                display: none;
+            }
+        </style>
+        <div id="error" class="hidden"></div>
+        <div id="chart"></div>
 
         <script type="text/javascript">
-
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(kickoff);
             function refresh() {
@@ -19,16 +38,39 @@
                 window.setInterval(refresh, 10000)
             }
             function initChart(chart){
-                var data = new google.visualization.DataTable();
+                var errContainer = document.getElementById('error');
+                errContainer.textContent = "";
+                errContainer.classList.add('hidden');
+                try {
+                    var data = new google.visualization.DataTable();
 
-                chart.columns.forEach(({label, type}) => {
-                    data.addColumn(type, label);
-                })
+                    chart.columns.forEach(col => {
+                        data.addColumn(col);
+                    })
 
-                data.addRows(chart.rows);
+                    data.addRows(chart.rows);
 
-                var gChart = new google.visualization.LineChart(document.getElementById("chart"));
-                gChart.draw(data, chart.options);
+                    var destElem = document.getElementById("chart")
+                    var gChart;
+                    switch (chart.options.style) {
+                        case 'line':
+                            gChart = new google.visualization.LineChart(destElem);
+                            break;
+                        case 'histogram':
+                            gChart = new google.visualization.Histogram(destElem);
+                            break;
+                        case 'bar':
+                            gChart = new google.visualization.BarChart(destElem);
+                            break;
+                        default:
+                            alert('unknown chart style: ' + chart.style)
+                            break;
+                    }
+                    gChart.draw(data, chart.options);
+                } catch(err) {
+                    errContainer.textContent = err.toString();
+                    errContainer.classList.remove('hidden');
+                }
             }
         </script>
     </body>

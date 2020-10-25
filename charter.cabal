@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 212e1c8482afdc5aa77900e5549d88e0505a0a55b48a56e1c4c5cacf9ee16cb7
+-- hash: f426a1732fed203815430fcd055b134e022e861e9bda6136698594e020586fc9
 
 name:           charter
 version:        0.1.0.0
@@ -31,12 +31,12 @@ library
   exposed-modules:
       Charts
       Charts.Internal.Chart
-      Charts.Internal.LineChart
       Charts.Internal.Server
   other-modules:
       Paths_charter
   hs-source-dirs:
       src
+  ghc-options: -Wall
   build-depends:
       aeson
     , async
@@ -55,10 +55,13 @@ library
 executable charter-exe
   main-is: Main.hs
   other-modules:
+      Examples.BarChart
+      Examples.Histogram
+      Examples.LineChart
       Paths_charter
   hs-source-dirs:
       app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -Wall
   build-depends:
       aeson
     , async
@@ -82,7 +85,7 @@ test-suite charter-test
       Paths_charter
   hs-source-dirs:
       test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -Wall
   build-depends:
       aeson
     , async

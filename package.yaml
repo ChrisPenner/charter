@@ -36,6 +36,9 @@ dependencies:
 library:
   source-dirs: src
 
+ghc-options:
+- -Wall
+
 data-files: 'templates/index.html'
 
 executables:
@@ -46,6 +49,7 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Wall
     dependencies:
     - charter
 
@@ -57,5 +61,6 @@ tests:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Wall
     dependencies:
     - charter
