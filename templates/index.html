@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </head>
+    <body>
+        <div id="chart" style="width: 900px; height: 500px"></div>
+
+        <script type="text/javascript">
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(kickoff);
+            function kickoff() {
+                window.setInterval(function(){
+                    fetch('/data')
+                        .then(resp => resp.json())
+                        .then(chart => initChart(chart));
+                    }, 2000)
+            }
+            function initChart(chart){
+                var data = new google.visualization.DataTable();
+
+                chart.columns.forEach(({label, type}) => {
+                    data.addColumn(type, label);
+                })
+
+                data.addRows(chart.rows);
+
+                var gChart = new google.visualization.LineChart(document.getElementById("chart"));
+                gChart.draw(data, chart.options);
+            }
+        </script>
+    </body>
+</html>

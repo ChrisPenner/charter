@@ -52,18 +52,6 @@ columnHeaderToJS :: Column -> Javascript
 columnHeaderToJS Column{label, typ} = toJS $ [julius|
         data.addColumn(#{toJSON typ}, #{label});|]
 
-testColumns :: [Column]
-testColumns = [Column "Year" StringColumn, Column "Attendance" NumberColumn, Column "Attendance" NumberColumn]
-testChart :: Chart a
-testChart = Chart testColumns testData LineChart (ChartOptions{title="My Chart"})
-
-testData :: [[Cell]]
-testData = [ ["2004",  1000,      400]
-           , ["2005",  1170,      460]
-           , ["2006",  660,       1120]
-           , ["2007",  1030,      540]
-           ]
-
 
 chartToHtml :: Chart a -> TL.Text
 chartToHtml chart = renderHtml [shamlet|

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e44a6ec87240abaa4bf5d7aee0bac7db2f7d8779444794165e3266e5dc1c8531
+-- hash: b3fde94b407b9ac933ee3844a6140bac7e765e47f45aa43169391fde3d81f7ce
 
 name:           charter
 version:        0.1.0.0
@@ -31,6 +31,7 @@ library
       Charts.Internal.Chart
       Charts.Internal.CodeGen
       Charts.Internal.LineChart
+      Charts.Internal.Server
   other-modules:
       Paths_charter
   hs-source-dirs:
@@ -41,11 +42,13 @@ library
     , blaze-html
     , bytestring
     , containers
+    , http-types
     , mtl
     , scientific
     , shakespeare
     , text
     , wai
+    , warp
   default-language: Haskell2010
 
 executable charter-exe
@@ -62,11 +65,13 @@ executable charter-exe
     , bytestring
     , charter
     , containers
+    , http-types
     , mtl
     , scientific
     , shakespeare
     , text
     , wai
+    , warp
   default-language: Haskell2010
 
 test-suite charter-test
@@ -84,9 +89,11 @@ test-suite charter-test
     , bytestring
     , charter
     , containers
+    , http-types
     , mtl
     , scientific
     , shakespeare
     , text
     , wai
+    , warp
   default-language: Haskell2010

@@ -30,6 +30,8 @@ dependencies:
 - scientific
 - shakespeare
 - blaze-html
+- http-types
+- warp
 
 library:
   source-dirs: src

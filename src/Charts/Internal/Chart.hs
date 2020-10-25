@@ -3,6 +3,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE NamedFieldPuns #-}
 module Charts.Internal.Chart where
 
 import qualified Data.Text as T
@@ -76,6 +77,12 @@ data Column = Column
     -- , continuity :: Continuity
     }
 
+instance ToJSON Column where
+  toJSON Column{..} = 
+      object [ "label" .= label
+             , "type" .= typ
+             ]
+
 
 data ChartStyle = LineChart
 data ChartOptions = ChartOptions
@@ -100,6 +107,10 @@ data Chart (style :: ChartStyle) =
           , options :: ChartOptions
           }
 
--- instance ToJSON Column where
-    -- toJSON ()
+instance ToJSON (Chart a) where
+  toJSON (Chart{..}) =
+      object [ "rows" .= dataTable
+             , "options" .= options
+             , "columns" .= columns
+             ]
 

@@ -1,3 +1,6 @@
-module Charts where
+module Charts (
+        serveChart
+    ) where
 
+import Charts.Internal.Server
 
