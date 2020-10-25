@@ -59,6 +59,7 @@ instance ToJSON Column where
 data ChartStyle = LineChart
                 | Histogram
                 | BarChart
+                | ScatterChart
                   deriving (Show, Eq, Ord)
 
 instance ToJSON ChartStyle where
@@ -66,25 +67,26 @@ instance ToJSON ChartStyle where
     LineChart -> "line"
     Histogram -> "histogram"
     BarChart -> "bar"
+    ScatterChart -> "scatter"
 
 data ChartOptions = ChartOptions
     { title :: T.Text
-    , style :: ChartStyle
     }
 
 instance ToJSON ChartOptions where
   toJSON ChartOptions{..} =
       A.object [ "title" .= title
-                , "style" .= style
                ]
 
 defaultChartOptions :: ChartOptions
-defaultChartOptions = ChartOptions {title="", style=LineChart}
+defaultChartOptions = ChartOptions {title=""}
 
 data Chart =
     Chart { options :: ChartOptions
+          , style :: ChartStyle
           , columns :: [Column]
           , dataTable :: [[Value]]
+          , dynamic :: Bool
           }
 
 instance ToJSON Chart where
@@ -92,7 +94,9 @@ instance ToJSON Chart where
       object [ "rows" .= dataTable
              , "options" .= options
              , "columns" .= columns
+             , "style" .= style
+             , "dynamic" .= dynamic
              ]
 
-buildChart :: ChartOptions -> [Column] -> [[Value]] ->  Chart
-buildChart = Chart
+buildChart :: ChartOptions -> ChartStyle -> [Column] -> [[Value]] ->  Chart
+buildChart opts style columns vals = Chart opts style columns vals True

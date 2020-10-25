@@ -26,9 +26,13 @@
         <div id="chart"></div>
 
         <script type="text/javascript">
+            var dynamic = true;
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(kickoff);
             function refresh() {
+                if (!dynamic) {
+                    return;
+                }
                 fetch('/data')
                     .then(resp => resp.json())
                     .then(chart => initChart(chart));
@@ -38,6 +42,7 @@
                 window.setInterval(refresh, 1000)
             }
             function initChart(chart){
+                dynamic = chart.dynamic;
                 var errContainer = document.getElementById('error');
                 errContainer.textContent = "";
                 errContainer.classList.add('hidden');
@@ -52,7 +57,7 @@
 
                     var destElem = document.getElementById("chart")
                     var gChart;
-                    switch (chart.options.style) {
+                    switch (chart.style) {
                         case 'line':
                             gChart = new google.visualization.LineChart(destElem);
                             break;
@@ -61,6 +66,9 @@
                             break;
                         case 'bar':
                             gChart = new google.visualization.BarChart(destElem);
+                            break;
+                        case 'scatter':
+                            gChart = new google.visualization.ScatterChart(destElem);
                             break;
                         default:
                             alert('unknown chart style: ' + chart.style)

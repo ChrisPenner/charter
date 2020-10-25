@@ -21,18 +21,18 @@ instance ChartRow T.Text where
 
 type ChartRow' a = (ADT a, Constraints a ChartRow, Constraints a ToJSON)
 
-autoChart :: forall row. (ADT row, ChartRow' row) => ChartOptions -> [row] -> Chart
-autoChart opts xs@[] = autoChartWithHeaders opts [] xs
-autoChart opts (x:xs) = autoChartWithHeaders opts columns (x:xs)
+autoChart :: forall row. (ADT row, ChartRow' row) => ChartOptions -> ChartStyle -> [row] -> Chart
+autoChart opts style xs@[] = autoChartWithHeaders opts style [] xs
+autoChart opts style (x:xs) = autoChartWithHeaders opts style columns (x:xs)
   where
     columns :: [Column]
     columns = gfoldMap @ChartRow toColumn x
     toColumn :: forall a. ChartRow a => a -> [Column]
     toColumn _ = [columnHeader (Proxy @a)]
 
-autoChartWithHeaders :: forall row. (ADT row, Constraints row ToJSON) => ChartOptions -> [Column] -> [row] -> Chart
-autoChartWithHeaders opts columns [] = buildChart opts columns []
-autoChartWithHeaders opts columns (x:xs) = buildChart opts columns rows
+autoChartWithHeaders :: forall row. (ADT row, Constraints row ToJSON) => ChartOptions -> ChartStyle -> [Column] -> [row] -> Chart
+autoChartWithHeaders opts style columns [] = buildChart opts style columns []
+autoChartWithHeaders opts style columns (x:xs) = buildChart opts style columns rows
   where
     rows :: [[Value]]
     rows = rowToJSON <$> (x:xs)

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6fecf42f9806f1c2c7ddf26f4d2050f81af0c4b1f02e99a097f3a049805684cc
+-- hash: c4c8556c51993f4bd201fa1fad79dbbf3573fe2784764132f3232808d4f68c63
 
 name:           charter
 version:        0.1.0.0
@@ -62,6 +62,7 @@ executable charter-exe
       Examples.Histogram
       Examples.LineChart
       Examples.Random
+      Examples.ScatterChart
       Paths_charter
   hs-source-dirs:
       app

@@ -23,7 +23,7 @@ chartApp chartVar indexFile req handler
 
 serveChart :: Port ->  Chart -> IO ()
 serveChart port chart = do
-    serveDynamicChart port (\handler -> handler chart)
+    serveDynamicChart port (\handler -> handler (chart{dynamic=False}))
 
 serveDynamicChart :: Port -> ((Chart -> IO ()) -> IO ()) -> IO ()
 serveDynamicChart port handler = do

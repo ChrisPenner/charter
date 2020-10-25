@@ -15,4 +15,4 @@ myData = [ ("A", 16, 20)
 
 
 myAutoChart :: Chart
-myAutoChart = autoChart (defaultChartOptions{style=BarChart}) myData
+myAutoChart = autoChart defaultChartOptions BarChart myData
