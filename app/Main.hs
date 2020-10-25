@@ -7,10 +7,13 @@ import Examples.Random
 import Examples.LineChart
 import Examples.Auto
 import Examples.ScatterChart
+import Examples.BarChart
+import Examples.ColumnChart
+import Examples.AreaChart
 
 -- main :: IO ()
 -- main = serveChart 8080 myAutoChart
 
 main :: IO ()
--- main = serveChart 8080 scatterChart
-main = serveUpdatingRandomChart
+main = serveChart 8080 areaChart
+-- main = serveUpdatingRandomChart

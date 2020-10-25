@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c4c8556c51993f4bd201fa1fad79dbbf3573fe2784764132f3232808d4f68c63
+-- hash: 4f718eba89b2103e794b0e898cf72a1080fb410dd01ed65ec5a187e7fcc32dcf
 
 name:           charter
 version:        0.1.0.0
@@ -57,8 +57,10 @@ library
 executable charter-exe
   main-is: Main.hs
   other-modules:
+      Examples.AreaChart
       Examples.Auto
       Examples.BarChart
+      Examples.ColumnChart
       Examples.Histogram
       Examples.LineChart
       Examples.Random

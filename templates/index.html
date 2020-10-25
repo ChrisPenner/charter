@@ -70,6 +70,24 @@
                         case 'scatter':
                             gChart = new google.visualization.ScatterChart(destElem);
                             break;
+                        case 'area':
+                            gChart = new google.visualization.AreaChart(destElem);
+                            break;
+                        case 'column':
+                            gChart = new google.visualization.ColumnChart(destElem);
+                            break;
+                        case 'pie':
+                            gChart = new google.visualization.PieChart(destElem);
+                            break;
+                        case 'bubble':
+                            gChart = new google.visualization.BubbleChart(destElem);
+                            break;
+                        case 'steppedarea':
+                            gChart = new google.visualization.SteppedAreaChart(destElem);
+                            break;
+                        case 'candlestick':
+                            gChart = new google.visualization.CandlestickChart(destElem);
+                            break;
                         default:
                             alert('unknown chart style: ' + chart.style)
                             break;

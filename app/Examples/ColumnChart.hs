@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Examples.BarChart where
+module Examples.ColumnChart where
 
 import Charts
 import qualified Data.Text as T
@@ -7,8 +7,8 @@ import qualified Data.Text as T
 chartColumns :: [Column]
 chartColumns = [StringColumn "Year", NumberColumn "Attendance",  AnnotationColumn, NumberColumn "Other", AnnotationColumn]
 
-barChart :: Chart
-barChart = autoChartWithHeaders (ChartOptions{title="My Chart"}) BarChart chartColumns chartData
+columnChart :: Chart
+columnChart = autoChartWithHeaders (ChartOptions{title="My Chart"}) ColumnChart chartColumns chartData
 
 chartData :: [(T.Text, Int, T.Text, Int, T.Text)]
 chartData =

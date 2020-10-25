@@ -59,7 +59,13 @@ instance ToJSON Column where
 data ChartStyle = LineChart
                 | Histogram
                 | BarChart
+                | ColumnChart
                 | ScatterChart
+                | AreaChart
+                | PieChart
+                | BubbleChart
+                | SteppedAreaChart
+                | CandlestickChart
                   deriving (Show, Eq, Ord)
 
 instance ToJSON ChartStyle where
@@ -67,7 +73,13 @@ instance ToJSON ChartStyle where
     LineChart -> "line"
     Histogram -> "histogram"
     BarChart -> "bar"
+    ColumnChart -> "column"
     ScatterChart -> "scatter"
+    AreaChart -> "area"
+    PieChart -> "pie"
+    BubbleChart -> "bubble"
+    SteppedAreaChart -> "steppedarea"
+    CandlestickChart -> "candlestick"
 
 data ChartOptions = ChartOptions
     { title :: T.Text
