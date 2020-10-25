@@ -28,10 +28,10 @@ dependencies:
 - wai
 - text
 - scientific
-- shakespeare
-- blaze-html
 - http-types
 - warp
+- async
+- process
 
 library:
   source-dirs: src

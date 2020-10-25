@@ -8,7 +8,7 @@ main :: IO ()
 main = serveChart 8080 testChart
 
 testColumns :: [Column]
-testColumns = [Column "Year" StringColumn, Column "Attendance" NumberColumn, Column "Attendance" NumberColumn]
+testColumns = [Column "Year" StringColumn, Column "Attendance" NumberColumn, Column "Other" NumberColumn]
 testChart :: Chart a
 testChart = Chart testColumns testData LineChart (ChartOptions{title="My Chart"})
 

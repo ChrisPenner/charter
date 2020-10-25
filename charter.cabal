@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c4daa91b4c752a1ff369c079cf5f8c59091e1682630f50a4ecfe7cffb11b8425
+-- hash: 212e1c8482afdc5aa77900e5549d88e0505a0a55b48a56e1c4c5cacf9ee16cb7
 
 name:           charter
 version:        0.1.0.0
@@ -31,7 +31,6 @@ library
   exposed-modules:
       Charts
       Charts.Internal.Chart
-      Charts.Internal.CodeGen
       Charts.Internal.LineChart
       Charts.Internal.Server
   other-modules:
@@ -40,14 +39,14 @@ library
       src
   build-depends:
       aeson
+    , async
     , base >=4.7 && <5
-    , blaze-html
     , bytestring
     , containers
     , http-types
     , mtl
+    , process
     , scientific
-    , shakespeare
     , text
     , wai
     , warp
@@ -62,15 +61,15 @@ executable charter-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , async
     , base >=4.7 && <5
-    , blaze-html
     , bytestring
     , charter
     , containers
     , http-types
     , mtl
+    , process
     , scientific
-    , shakespeare
     , text
     , wai
     , warp
@@ -86,15 +85,15 @@ test-suite charter-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , async
     , base >=4.7 && <5
-    , blaze-html
     , bytestring
     , charter
     , containers
     , http-types
     , mtl
+    , process
     , scientific
-    , shakespeare
     , text
     , wai
     , warp
