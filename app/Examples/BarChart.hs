@@ -8,7 +8,7 @@ chartColumns :: [Column]
 chartColumns = [StringColumn "Year", NumberColumn "Attendance",  AnnotationColumn, NumberColumn "Other", AnnotationColumn]
 
 barChart :: Chart
-barChart = autoChartWithHeaders (ChartOptions{title="My Chart"}) BarChart chartColumns chartData
+barChart = autoChartWithHeaders defaultChartOptions BarChart chartColumns chartData
 
 chartData :: [(T.Text, Int, T.Text, Int, T.Text)]
 chartData =

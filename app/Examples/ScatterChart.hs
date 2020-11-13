@@ -4,7 +4,7 @@ module Examples.ScatterChart where
 import Charts
 
 scatterChart :: Chart
-scatterChart = autoChartWithHeaders (ChartOptions{title="Age vs. Weight"}) ScatterChart chartColumns chartData
+scatterChart = autoChartWithHeaders defaultChartOptions ScatterChart chartColumns chartData
 
 chartColumns :: [Column]
 chartColumns = [NumberColumn "Age", NumberColumn "Weight"]

@@ -15,5 +15,5 @@ import Examples.AreaChart
 -- main = serveChart 8080 myAutoChart
 
 main :: IO ()
-main = serveChart 8080 areaChart
+main = serveChart 8080 myAutoChart
 -- main = serveUpdatingRandomChart

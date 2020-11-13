@@ -9,7 +9,7 @@ chartColumns :: [Column]
 chartColumns = [StringColumn "Year", NumberColumn "Attendance", NumberColumn "Other", AnnotationColumn]
 
 lineChart :: Chart
-lineChart = buildChart (ChartOptions{title="My Chart"}) LineChart chartColumns chartData 
+lineChart = buildChart defaultChartOptions LineChart chartColumns chartData 
 
 chartData :: [[Value]]
 chartData = asJSON <$> 

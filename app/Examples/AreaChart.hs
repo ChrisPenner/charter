@@ -8,7 +8,7 @@ chartColumns :: [Column]
 chartColumns = [StringColumn "Year", NumberColumn "Attendance",  AnnotationColumn, NumberColumn "Other", AnnotationColumn]
 
 areaChart :: Chart
-areaChart = autoChartWithHeaders (ChartOptions{title="My Chart"}) AreaChart chartColumns chartData
+areaChart = autoChartWithHeaders defaultChartOptions AreaChart chartColumns chartData
 
 chartData :: [(T.Text, Int, T.Text, Int, T.Text)]
 chartData =
