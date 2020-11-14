@@ -7,9 +7,11 @@ module Charts ( serveChart
               , buildChart
               , defaultChartOptions
 
-              , ChartRow'
               , autoChart
               , autoChartWithHeaders
+              , ChartRowAuto
+              , ChartRowHeaderAuto
+              , ChartColumn(..)
     ) where
 
 import Charts.Internal.Server

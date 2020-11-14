@@ -10,6 +10,10 @@ module Charts.Internal.Chart where
 import qualified Data.Text as T
 import Data.Aeson as A
 
+-- | Valid Column types. Each "data" column also accepts a column header.
+-- "Role" columns do not.
+--
+-- See https://developers.google.com/chart/interactive/docs/roles
 data Column =
         NumberColumn T.Text
       | StringColumn T.Text
@@ -17,7 +21,6 @@ data Column =
       | DateColumn T.Text
       | DateTimeColumn T.Text
       | TimeOfDayColumn T.Text
--- https://developers.google.com/chart/interactive/docs/roles?hl=en#what-roles-are-available
       | AnnotationColumn
       | AnnotationTextColumn
       | CertaintyColumn
@@ -26,15 +29,15 @@ data Column =
       | ScopeColumn
       | StyleColumn
       | TooltipColumn
-    -- Shouldn't need to use these explicitly in most cases
       | DomainColumn
+    -- ^ This is typically inferred and explicitly
       | DataColumn
-
+    -- ^ This is typically inferred and explicitly
   deriving (Show, Eq)
 
 -- Types from https://developers.google.com/chart/interactive/docs/reference#DataTable_addColumn
 instance ToJSON Column where
-  toJSON col = 
+  toJSON col =
               case col of
                   StringColumn a -> object [ "label" .= a, "type" ~= "string"]
                   NumberColumn a -> object [ "label" .= a, "type" ~= "number"]
@@ -56,6 +59,8 @@ instance ToJSON Column where
       (~=):: T.Text -> T.Text -> (T.Text, Value)
       (~=) = (.=)
 
+-- | Supported chart types
+-- See https://developers.google.com/chart/interactive/docs/gallery
 data ChartStyle = LineChart
                 | Histogram
                 | BarChart
@@ -81,14 +86,23 @@ instance ToJSON ChartStyle where
     SteppedAreaChart -> "steppedarea"
     CandlestickChart -> "candlestick"
 
+-- | I plan to make this typesafe for each partiular chart type
+-- but that's a LOT of work, so for now it's just free-form, if you'd actually
+-- use this, please make an issue on Github so I know folks need this behaviour :)
+--
+-- Find your chart in the chart gallery to see which options it will accept.
+--
+-- https://developers.google.com/chart/interactive/docs/gallery
 data ChartOptions = ChartOptions Value
 
 instance ToJSON ChartOptions where
   toJSON (ChartOptions v) = v
 
+-- | Empty chart options
 defaultChartOptions :: ChartOptions
 defaultChartOptions = ChartOptions (object [])
 
+-- | The primary chart type. Build using 'buildChart'.
 data Chart =
     Chart { options :: ChartOptions
           , style :: ChartStyle
@@ -106,5 +120,18 @@ instance ToJSON Chart where
              , "dynamic" .= dynamic
              ]
 
+-- | Construct a chart.
+--
+-- e.g.
+--
+-- @
+-- buildChart defaultChartOptions BarChart
+--   [StringColumn "Year", NumberColumn "Population"]
+--   [ [ String "2004", Number 1000 ]
+--   , [ String "2005", Number 1170 ]
+--   , [ String "2006", Number 660 ]
+--   , [ String "2007", Number 1030 ]
+--   ]
+-- @
 buildChart :: ChartOptions -> ChartStyle -> [Column] -> [[Value]] ->  Chart
 buildChart opts style columns vals = Chart opts style columns vals True

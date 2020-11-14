@@ -13,18 +13,22 @@ import System.Process
 import Control.Monad
 import Control.Concurrent.MVar
 
+-- | Serve a chart, updating along with the MVar
 chartApp :: MVar Chart -> FilePath -> Application
-chartApp chartVar indexFile req handler 
+chartApp chartVar indexFile req handler
       | pathInfo req == ["data"] = do
           chart <- readMVar chartVar
           handler (responseLBS ok200 [("Content-Type", "application/json")] (encode chart))
       | otherwise = do
           handler (responseFile ok200 mempty indexFile Nothing)
 
+-- | Serve a single static chart on the given port
 serveChart :: Port ->  Chart -> IO ()
 serveChart port chart = do
     serveDynamicChart port (\handler -> handler (chart{dynamic=False}))
 
+-- | Serve a chart on the given port.
+-- The application can update the chart using the given handler.
 serveDynamicChart :: Port -> ((Chart -> IO ()) -> IO ()) -> IO ()
 serveDynamicChart port handler = do
     indexHtml <- getDataFileName "templates/index.html"
