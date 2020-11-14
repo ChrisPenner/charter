@@ -102,7 +102,7 @@ instance ToJSON ChartOptions where
 defaultChartOptions :: ChartOptions
 defaultChartOptions = ChartOptions (object [])
 
--- | The primary chart type. Build using 'buildChart'.
+-- | The primary chart type.
 data Chart =
     Chart { options :: ChartOptions
           , style :: ChartStyle
@@ -125,7 +125,8 @@ instance ToJSON Chart where
 -- e.g.
 --
 -- @
--- buildChart defaultChartOptions BarChart
+-- myChart :: Chart
+-- myChart = buildChart defaultChartOptions BarChart
 --   [StringColumn "Year", NumberColumn "Population"]
 --   [ [ String "2004", Number 1000 ]
 --   , [ String "2005", Number 1170 ]

@@ -1,14 +1,21 @@
-module Charts ( serveChart
+module Charts ( 
+              -- * Serving Charts
+                serveChart
               , serveDynamicChart
-              , Chart
-              , Column(..)
-              , ChartOptions(..)
-              , ChartStyle(..)
-              , buildChart
-              , defaultChartOptions
-
+              -- * Creating Charts
+              -- ** Automatic Charts
               , autoChart
               , autoChartWithHeaders
+              -- ** Manual Charts
+              , buildChart
+              -- * Chart Options
+              , defaultChartOptions
+              , ChartOptions(..)
+
+              -- * Assorted Types
+              , Chart
+              , Column(..)
+              , ChartStyle(..)
               , ChartRowAuto
               , ChartRowHeaderAuto
               , ChartColumn(..)

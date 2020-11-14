@@ -4,9 +4,11 @@
 module Examples.Auto where
 
 import qualified Data.Text as T
-import Data.Aeson
 
 import Charts
+
+main :: IO ()
+main = serveChart 8080 myAutoChart
 
 myAutoChart :: Chart
 myAutoChart = autoChartWithHeaders defaultChartOptions BarChart headers myData
@@ -19,6 +21,4 @@ myAutoChart = autoChartWithHeaders defaultChartOptions BarChart headers myData
              , ("C", 9, 25)
              , ("D", 8, 34)
              ]
-
-
 

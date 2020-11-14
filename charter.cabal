@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4f718eba89b2103e794b0e898cf72a1080fb410dd01ed65ec5a187e7fcc32dcf
+-- hash: ad7f4096a5c9a7e6402cc70c9dcd09a98f507d302e89cf81f17afb571c115c1e
 
 name:           charter
-version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/charter#readme>
-homepage:       https://github.com/githubuser/charter#readme
-bug-reports:    https://github.com/githubuser/charter/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2020 Author name here
+version:        0.1.1.0
+description:    Please see the README on GitHub at <https://github.com/ChrisPenner/charter#readme>
+homepage:       https://github.com/ChrisPenner/charter#readme
+bug-reports:    https://github.com/ChrisPenner/charter/issues
+author:         Chris Penner
+maintainer:     christopher.penner@gmail.com
+copyright:      2020 Chris Penner
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -25,7 +25,7 @@ data-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/charter
+  location: https://github.com/ChrisPenner/charter
 
 library
   exposed-modules:
