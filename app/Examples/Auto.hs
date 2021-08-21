@@ -7,9 +7,6 @@ import qualified Data.Text as T
 
 import Charts
 
-main :: IO ()
-main = serveChart 8080 myAutoChart
-
 myAutoChart :: Chart
 myAutoChart = autoChartWithHeaders defaultChartOptions BarChart headers myData
   where

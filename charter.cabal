@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ad7f4096a5c9a7e6402cc70c9dcd09a98f507d302e89cf81f17afb571c115c1e
+-- hash: 8915b5ff42971e3413f62497642d059ed7c6584f4c4b20da7d9fd2ace2f30af5
 
 name:           charter
-version:        0.1.1.0
+version:        0.1.1.1
 description:    Please see the README on GitHub at <https://github.com/ChrisPenner/charter#readme>
 homepage:       https://github.com/ChrisPenner/charter#readme
 bug-reports:    https://github.com/ChrisPenner/charter/issues

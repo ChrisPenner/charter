@@ -36,6 +36,7 @@ serveDynamicChart port handler = do
     let runServer = run port (chartApp chartVar indexHtml)
     let runHandler = handler (updateChart chartVar)
     withAsync (concurrently_ runServer runHandler) $ \procHandle -> do
+        putStrLn $ "Serving chart on port: " <> show port
         void $ spawnProcess "open" [("http://localhost:" <> show port)]
         wait procHandle
   where
